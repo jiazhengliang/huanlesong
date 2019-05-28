@@ -11,5 +11,6 @@
 @interface HotDynamicController : CustomBaseViewController
 
 @property (nonatomic, strong) UIViewController *viewController;
+@property (nonatomic, assign) BOOL isfrom;
 
 @end

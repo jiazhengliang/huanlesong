@@ -573,7 +573,6 @@
 				04BF78BB22806CBA0008E60C /* Frameworks */,
 				04BF78BC22806CBA0008E60C /* Resources */,
 				C3F03BCCDFC81D927A8FC83C /* [CP] Embed Pods Frameworks */,
-				3A3B3B444CC8F560FAF1FDAF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -692,28 +691,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3A3B3B444CC8F560FAF1FDAF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-huanleSong/Pods-huanleSong-resources.sh",
-				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-huanleSong/Pods-huanleSong-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9BB42833A8F411DDF14EA2AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -744,7 +721,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-huanleSong/Pods-huanleSong-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-huanleSong/Pods-huanleSong-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FreeStreamer/FreeStreamer.framework",
 				"${BUILT_PRODUCTS_DIR}/HPGrowingTextView/HPGrowingTextView.framework",
@@ -775,7 +752,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-huanleSong/Pods-huanleSong-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-huanleSong/Pods-huanleSong-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1019,7 +996,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GDY9P9U7PJ;
-				GCC_PREFIX_HEADER = /Users/jonemac/Desktop/huanleSong/huanleSong/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/huanleSong/PrefixHeader.pch";
 				INFOPLIST_FILE = huanleSong/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1042,7 +1019,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GDY9P9U7PJ;
-				GCC_PREFIX_HEADER = /Users/jonemac/Desktop/huanleSong/huanleSong/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/huanleSong/PrefixHeader.pch";
 				INFOPLIST_FILE = huanleSong/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

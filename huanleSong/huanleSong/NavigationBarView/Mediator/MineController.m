@@ -11,7 +11,7 @@
 #import "PersonViewController.h"
 #import "feedbackController.h"
 #import "MyVideoController.h"
-//#import "VIPSetterController.h"
+#import "HotDynamicController.h"
 //#import "promoteSelfController.h"
 //#import "WishDateListController.h"
 //
@@ -59,33 +59,39 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = BackGroundColor;
-//    MineHeaderView *headerView = [[MineHeaderView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 285*KWIDTH)];
-//    if ([LSingleton shareClient].loginUser.IsAuth == 1) {
-//        headerView.personBtn.selected = YES;
-//    } else
-//    {
-//        headerView.personBtn.selected = NO;
-//    }
-//
-//
-//    headerView.delegate = self;
-//    self.mineHeaderView = headerView;
-//    [self.view addSubview:headerView];
     
     UIView *backGroud = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 215*KWIDTH)];
     UIImage *image = [UIImage imageNamed:@"personal_nav_bg"];
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.image = [UIImage imageNamed:@"logo"];
+    imageView.layer.cornerRadius = 40;
+    imageView.layer.masksToBounds = YES;
     
     backGroud.layer.contents = (id)image.CGImage;
     [self updateUserData:nil];
     
     self.tableView.tableHeaderView = backGroud;
-    self.infoArray = @[@"个人资料",@"我的旅游",@"我的视频",@"视频排行榜",@"推广自己",@"设置"];
-    
+    self.infoArray = @[@"个人资料",@"我的旅游",@"我的视频",@"问题与反馈"];
     self.infoImageArray = @[@"personal_icon_data",@"personal_icon_mywish",@"personal_icon_gift",@"personal_icon_honor",@"personal_icon_spread",@"personal_icon_setup"];
-
     [self.view addSubview:self.tableView];
     self.barView.hidden = YES;
+    [backGroud addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(backGroud);
+        make.size.mas_equalTo(CGSizeMake(80, 80));
+    }];
     
+    
+    UILabel *nickLab = [[UILabel alloc] init];
+    nickLab.text = @"小姐姐";
+    nickLab.font = [UIFont systemFontOfSize:14];
+    nickLab.textColor = UIColor.whiteColor;
+    [backGroud addSubview:nickLab];
+    [nickLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(imageView.mas_bottom).offset(10)
+        ;
+        make.centerX.equalTo(imageView);
+    }];
 }
 
 -(void)updateUserData:(NSNotification *)notification {
@@ -120,15 +126,10 @@
     NSString *image;
     NSString *titleString;
 
-    if (indexPath.section == 0) {
-        image = [self.infoImageArray objectAtIndexWithCheck:indexPath.row];
-        titleString = [self.infoArray objectAtIndexWithCheck:indexPath.row];
+    image = [self.infoImageArray objectAtIndexWithCheck:indexPath.row];
+    titleString = [self.infoArray objectAtIndexWithCheck:indexPath.row];
         
-    } else if (indexPath.section == 1)
-    {
-        image = [self.infoImageArray objectAtIndexWithCheck:indexPath.row+3];
-        titleString = [self.infoArray objectAtIndexWithCheck:indexPath.row+3];
-    }
+ 
     headerCell.imagView.image = [UIImage imageNamed:image];
 
     headerCell.titleLabel.text =titleString;
@@ -138,12 +139,12 @@
 #pragma mark 返回多少列
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
-    return 3;
+    return self.infoArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,12 +186,19 @@
     if (indexPath.row == 0) {
         [self.navigationController pushViewController:[PersonViewController new] animated:YES];
     } else if (indexPath.row == 1) {
-            [self.navigationController pushViewController:[feedbackController new] animated:YES];
+        MyVideoController *videoVc = [MyVideoController new];
+        videoVc.titleString = @"我的旅游";
+        [self.navigationController pushViewController:videoVc animated:YES];
        
+    } else if (indexPath.row == 2) {
+        
+        HotDynamicController *videoVc = [HotDynamicController new];
+        videoVc.isfrom = YES;
+        [self.navigationController pushViewController:videoVc animated:YES];
+        
     } else
         {
-            MyVideoController *videoVc = [MyVideoController new];
-            videoVc.titleString = @"我的视频";
+            feedbackController *videoVc = [feedbackController new];
 
             [self.navigationController pushViewController:videoVc animated:YES];
 

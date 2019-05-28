@@ -445,7 +445,7 @@
         //        _passwordText.rightViewMode = UITextFieldViewModeAlways;
         //        _passwordText.clearButtonMode = UITextFieldViewModeWhileEditing;
         //        [_passwordText addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-        //        _passwordText.secureTextEntry = YES;
+                _passwordText.secureTextEntry = YES;
     }
     return _passwordText;
 }
