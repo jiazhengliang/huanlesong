@@ -49,7 +49,6 @@
 		BE35C5E22288FF4C00C354F0 /* KZVideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BE35C5E02288FF4C00C354F0 /* KZVideoPlayer.m */; };
 		BE35C5E52289604B00C354F0 /* MineViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE35C5E42289604B00C354F0 /* MineViewCell.m */; };
 		BE35C5E82289723D00C354F0 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE35C5E72289723D00C354F0 /* PersonViewController.m */; };
-		BE35C5EA228A3C1A00C354F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE35C5E9228A3C1A00C354F0 /* Images.xcassets */; };
 		BE57E904229C0F43006FD05C /* PublicWishController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57E903229C0F43006FD05C /* PublicWishController.m */; };
 		BE57E909229C0FDB006FD05C /* jzlView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57E905229C0FDA006FD05C /* jzlView.m */; };
 		BE57E90A229C0FDB006FD05C /* LPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE57E906229C0FDA006FD05C /* LPickerView.m */; };
@@ -192,7 +191,6 @@
 		BE35C5E42289604B00C354F0 /* MineViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewCell.m; sourceTree = "<group>"; };
 		BE35C5E62289723D00C354F0 /* PersonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
 		BE35C5E72289723D00C354F0 /* PersonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
-		BE35C5E9228A3C1A00C354F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BE57E902229C0F43006FD05C /* PublicWishController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicWishController.h; sourceTree = "<group>"; };
 		BE57E903229C0F43006FD05C /* PublicWishController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicWishController.m; sourceTree = "<group>"; };
 		BE57E905229C0FDA006FD05C /* jzlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = jzlView.m; sourceTree = "<group>"; };
@@ -460,7 +458,6 @@
 				04BF78CC22806CBC0008E60C /* LaunchScreen.storyboard */,
 				04BF78CF22806CBC0008E60C /* Info.plist */,
 				04BF78D022806CBC0008E60C /* main.m */,
-				BE35C5E9228A3C1A00C354F0 /* Images.xcassets */,
 			);
 			path = huanleSong;
 			sourceTree = "<group>";
@@ -667,7 +664,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BF78CE22806CBC0008E60C /* LaunchScreen.storyboard in Resources */,
-				BE35C5EA228A3C1A00C354F0 /* Images.xcassets in Resources */,
 				BEEC97D2229BCA1B00150306 /* TZImagePickerController.bundle in Resources */,
 				04BF78CB22806CBC0008E60C /* Assets.xcassets in Resources */,
 				04230ED22286DFF4001B8E98 /* Info.plist in Resources */,
