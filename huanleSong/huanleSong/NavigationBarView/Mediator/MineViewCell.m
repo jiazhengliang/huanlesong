@@ -53,7 +53,7 @@
 {
     if (!_arrView) {
         _arrView = [[UIImageView alloc] init];
-        _arrView.image = [UIImage imageNamed:@"arrow"];
+        _arrView.image = [UIImage imageNamed:@"more_list"];
     }
     return _arrView;
 }
@@ -69,7 +69,7 @@
     self.titleLabel.frame = CGRectMake(self.imagView.right+5, self.imagView.top , 100*KWIDTH, 20*KWIDTH);
     self.arrView.frame = CGRectMake(screen_width-30, 13*KWIDTH, 20*KWIDTH, 20*KWIDTH);
     
-    self.subTitleLabel.frame = CGRectMake(screen_width-130*KWIDTH, 13*KWIDTH, 120*KWIDTH, 20*KWIDTH)
+    self.subTitleLabel.frame = CGRectMake(screen_width-150*KWIDTH, 13*KWIDTH, 120*KWIDTH, 20*KWIDTH)
     ;
 }
 

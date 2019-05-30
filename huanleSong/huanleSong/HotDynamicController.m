@@ -7,6 +7,7 @@
 //#import "WishDataManager.h"
 #import "NewRefreshModel.h"
 #import "PlayerViewController.h"
+#import "PublishAgreementController.h"
 //#import "ReportController.h"
 //
 //#import "WXApi.h"
@@ -45,6 +46,9 @@
 //    NSArray *imagearray;
     if (_isfrom == YES) {
          self.title = @"我的视频";
+        [self.leftBtn setImage:[UIImage imageNamed:@"icon_return_red_normal"] forState:UIControlStateNormal];
+        
+        [self.barView setLeftButton:self.leftBtn];
         self.imagearray =@[@{
                       @"HeadImaBig": @"http://jxtt.diangoumall.com/149c30b0vodcq1258058953/7e8d2b855285890789595419918/5285890789595419919.jpg",
                       @"Nickname": @"龙源",
@@ -177,12 +181,27 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)leftBtnClick
-{
- 
-    [self.navigationController pushViewController:[PublicWishController new] animated:YES];
+-(void)rightBtnClick{
+    BOOL isFrist =  [[NSUserDefaults standardUserDefaults] objectForKey:@"user_first"];
+    
+    
+    if( isFrist == YES) {
+        [self.navigationController pushViewController:[PublicWishController new] animated:YES];
+        
+    }else
+    {
+        [self presentViewController:[PublishAgreementController new] animated:YES completion:^{
+            
+        }];
+    }
     NSLog(@"leftBtnClick");
 }
+
+-(void)leftBtnClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 #pragma mark---UITableView Delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

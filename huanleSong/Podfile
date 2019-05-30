@@ -12,11 +12,7 @@ target 'huanleSong' do
     pod 'MJRefresh'
     pod 'ReactiveObjC'
     pod 'AFNetworking'
-#    pod 'AMap3DMap'
-#    pod 'AMapSearch'
-#    pod 'AMapLocation'
     pod 'SDWebImage'
-
     pod 'FreeStreamer','~> 3.7.2'
     pod 'HPGrowingTextView', '~>1.1'
 

@@ -82,6 +82,9 @@
 		BEEC97E0229BCC8900150306 /* UIColor+XYColor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97DF229BCC8900150306 /* UIColor+XYColor.m */; };
 		BEEC97E9229BCDE800150306 /* UIView+XYConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97E8229BCDE800150306 /* UIView+XYConvenience.m */; };
 		BEEC97EC229BF89F00150306 /* MyVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97EB229BF89F00150306 /* MyVideoController.m */; };
+		DF2D9776229F8C420060156A /* AgreementContent.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DF2D9775229F8C410060156A /* AgreementContent.rtf */; };
+		DF2D9779229F8CBB0060156A /* PublishAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2D9778229F8CBB0060156A /* PublishAgreementController.m */; };
+		DF2D977C229FD1010060156A /* ModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2D977B229FD1010060156A /* ModelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +259,11 @@
 		BEEC97E8229BCDE800150306 /* UIView+XYConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYConvenience.m"; sourceTree = "<group>"; };
 		BEEC97EA229BF89F00150306 /* MyVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyVideoController.h; sourceTree = "<group>"; };
 		BEEC97EB229BF89F00150306 /* MyVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyVideoController.m; sourceTree = "<group>"; };
+		DF2D9775229F8C410060156A /* AgreementContent.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AgreementContent.rtf; sourceTree = "<group>"; };
+		DF2D9777229F8CBB0060156A /* PublishAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishAgreementController.h; sourceTree = "<group>"; };
+		DF2D9778229F8CBB0060156A /* PublishAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishAgreementController.m; sourceTree = "<group>"; };
+		DF2D977A229FD1010060156A /* ModelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelViewController.h; sourceTree = "<group>"; };
+		DF2D977B229FD1010060156A /* ModelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelViewController.m; sourceTree = "<group>"; };
 		E618CCFA7794084E8E94768C /* Pods_huanleSong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huanleSong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -427,6 +435,11 @@
 				BEEC9798229BC8CE00150306 /* XYTextTableViewCell.m */,
 				0492F5D3228072860074AC20 /* LoginViewController.h */,
 				0492F5D4228072860074AC20 /* LoginViewController.m */,
+				DF2D9775229F8C410060156A /* AgreementContent.rtf */,
+				DF2D9777229F8CBB0060156A /* PublishAgreementController.h */,
+				DF2D9778229F8CBB0060156A /* PublishAgreementController.m */,
+				DF2D977A229FD1010060156A /* ModelViewController.h */,
+				DF2D977B229FD1010060156A /* ModelViewController.m */,
 				04230EA62286D971001B8E98 /* HotDynamicController.h */,
 				04230EA52286D971001B8E98 /* HotDynamicController.m */,
 				BEEC97DE229BCC8800150306 /* UIColor+XYColor.h */,
@@ -663,6 +676,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF2D9776229F8C420060156A /* AgreementContent.rtf in Resources */,
 				04BF78CE22806CBC0008E60C /* LaunchScreen.storyboard in Resources */,
 				BEEC97D2229BCA1B00150306 /* TZImagePickerController.bundle in Resources */,
 				04BF78CB22806CBC0008E60C /* Assets.xcassets in Resources */,
@@ -815,6 +829,7 @@
 				04230EA22286C3AD001B8E98 /* LMediatorForController.m in Sources */,
 				BEEC97CD229BCA1B00150306 /* TZVideoPlayerController.m in Sources */,
 				BE6DB1DE229C2ADD009568B5 /* LPPopup.m in Sources */,
+				DF2D9779229F8CBB0060156A /* PublishAgreementController.m in Sources */,
 				BE57E909229C0FDB006FD05C /* jzlView.m in Sources */,
 				BEEC97D3229BCA1B00150306 /* TZProgressView.m in Sources */,
 				04230ED02286DFF4001B8E98 /* NSString+MJExtension.m in Sources */,
@@ -823,6 +838,7 @@
 				BE57E910229C10CB006FD05C /* addViewCell.m in Sources */,
 				04230EAD2286DA1F001B8E98 /* CustomBaseViewController.m in Sources */,
 				BEEC97D6229BCA1B00150306 /* UIView+Frame.m in Sources */,
+				DF2D977C229FD1010060156A /* ModelViewController.m in Sources */,
 				04230ECA2286DFF4001B8E98 /* NSObject+MJKeyValue.m in Sources */,
 				04230EA32286C3AD001B8E98 /* LFactoryRootController.m in Sources */,
 				BEEC97E9229BCDE800150306 /* UIView+XYConvenience.m in Sources */,

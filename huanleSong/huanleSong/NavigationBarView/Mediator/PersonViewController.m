@@ -8,7 +8,8 @@
 
 #import "PersonViewController.h"
 #import "MineViewCell.h"
-@interface PersonViewController ()
+#import "ModelViewController.h"
+@interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property(strong,nonatomic)NSArray *infoArray;
 @property(strong,nonatomic)NSArray *infoSubArray;
@@ -39,7 +40,8 @@
     self.view.backgroundColor = BackGroundColor;
     self.infoArray = @[@"昵称",@"身高",@"体重",@"语言",@"特长",@"爱好地"];
     
-    self.infoSubArray = @[@"小姐姐",@"168cm",@"50kg",@"英语",@"爬山",@"深圳"];
+
+
 
     [self.view addSubview:self.tableView];
     [self.leftBtn setImage:[UIImage imageNamed:@"icon_return_red_normal"] forState:UIControlStateNormal];
@@ -48,6 +50,30 @@
     [self.barView setLeftButton:self.leftBtn];
     
     // Do any additional setup after loading the view.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+ 
+    [super viewWillAppear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *name =  [defaults objectForKey:@"user_1"];
+    NSString *heigh =  [defaults objectForKey:@"user_2"];
+    NSString *weight =  [defaults objectForKey:@"user_3"];
+    NSString *langugue =  [defaults objectForKey:@"user_4"];
+    NSString *likes =  [defaults objectForKey:@"user_5"];
+    NSString *address =  [defaults objectForKey:@"user_6"];
+    
+    self.infoSubArray = @[name?name:@"小姐姐",
+                          heigh?heigh:@"168cm",
+                          weight?weight:@"50kg",
+                          langugue?langugue:@"英语",
+                          likes?likes:@"爬山",
+                          address?address:@"深圳"];
+    
+    [self.tableView reloadData];
 }
 
 -(void)leftBtnClick{
@@ -69,12 +95,8 @@
     }
     NSString *image;
     NSString *titleString;
-    
-    
     titleString = [self.infoArray objectAtIndexWithCheck:indexPath.section];
     image = [self.infoSubArray objectAtIndexWithCheck:indexPath.section];
-
-        
     headerCell.titleLabel.text =titleString;
     headerCell.subTitleLabel.text = image;
     headerCell.subTitleLabel.hidden = NO;
@@ -125,6 +147,17 @@
     return 15*KWIDTH;
     //    }
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSString *string = [NSString stringWithFormat:@"user_%d",indexPath.row + 1];
+    ModelViewController *model = [[ModelViewController alloc] init];
+    model.titleString = string;
+    [self.navigationController pushViewController:model animated:YES];
+}
+
+
+
 /*
 #pragma mark - Navigation
 

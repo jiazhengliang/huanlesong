@@ -9,7 +9,14 @@
 #ifndef MacroDefinition_h
 #define MacroDefinition_h
 
-#define    kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+// 判断是否为iPhone X 系列  这样写消除了在Xcode10上的警告。
+#define IPHONE_X \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+
 #define RGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
 #define HexRGBAlpha(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:(a)]
@@ -18,7 +25,7 @@
 #define NavigationBarColor [UIColor colorWithRed:233/255.0 green:118/255.0 blue:20/255.0 alpha:1]
 #define NavigationBarShadowColor [UIColor blackColor]
 #define NavigationBarWidth screen_width
-#define NavigationBarHeight 64
+#define NavigationBarHeight (CGFloat)(IPHONE_X?(88.0):(64.0))
 
 #define NavigationBarTitleFont [UIFont systemFontOfSize:17*KWIDTH]
 #define NavigationBarTitleColor BlackCustomColor
