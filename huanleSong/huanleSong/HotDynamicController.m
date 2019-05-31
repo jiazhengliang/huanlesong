@@ -152,7 +152,7 @@
     self.pageInde = 1;
     
     UIButton *buttonBack=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [buttonBack addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [buttonBack addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [buttonBack setImage:[UIImage imageNamed:@"fenxg"] forState:UIControlStateNormal];
     
     buttonBack.imageEdgeInsets = UIEdgeInsetsMake(10, 6, 10, 14);

@@ -82,6 +82,7 @@
 		BEEC97E0229BCC8900150306 /* UIColor+XYColor.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97DF229BCC8900150306 /* UIColor+XYColor.m */; };
 		BEEC97E9229BCDE800150306 /* UIView+XYConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97E8229BCDE800150306 /* UIView+XYConvenience.m */; };
 		BEEC97EC229BF89F00150306 /* MyVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEC97EB229BF89F00150306 /* MyVideoController.m */; };
+		DF19032F22A0D307003E71FA /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF19032E22A0D307003E71FA /* ApplyViewController.m */; };
 		DF2D9776229F8C420060156A /* AgreementContent.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DF2D9775229F8C410060156A /* AgreementContent.rtf */; };
 		DF2D9779229F8CBB0060156A /* PublishAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2D9778229F8CBB0060156A /* PublishAgreementController.m */; };
 		DF2D977C229FD1010060156A /* ModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF2D977B229FD1010060156A /* ModelViewController.m */; };
@@ -259,6 +260,8 @@
 		BEEC97E8229BCDE800150306 /* UIView+XYConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XYConvenience.m"; sourceTree = "<group>"; };
 		BEEC97EA229BF89F00150306 /* MyVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyVideoController.h; sourceTree = "<group>"; };
 		BEEC97EB229BF89F00150306 /* MyVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyVideoController.m; sourceTree = "<group>"; };
+		DF19032D22A0D307003E71FA /* ApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
+		DF19032E22A0D307003E71FA /* ApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		DF2D9775229F8C410060156A /* AgreementContent.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = AgreementContent.rtf; sourceTree = "<group>"; };
 		DF2D9777229F8CBB0060156A /* PublishAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishAgreementController.h; sourceTree = "<group>"; };
 		DF2D9778229F8CBB0060156A /* PublishAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishAgreementController.m; sourceTree = "<group>"; };
@@ -439,6 +442,8 @@
 				DF2D9777229F8CBB0060156A /* PublishAgreementController.h */,
 				DF2D9778229F8CBB0060156A /* PublishAgreementController.m */,
 				DF2D977A229FD1010060156A /* ModelViewController.h */,
+				DF19032D22A0D307003E71FA /* ApplyViewController.h */,
+				DF19032E22A0D307003E71FA /* ApplyViewController.m */,
 				DF2D977B229FD1010060156A /* ModelViewController.m */,
 				04230EA62286D971001B8E98 /* HotDynamicController.h */,
 				04230EA52286D971001B8E98 /* HotDynamicController.m */,
@@ -795,6 +800,7 @@
 				BEEC97EC229BF89F00150306 /* MyVideoController.m in Sources */,
 				BEEC97CE229BCA1B00150306 /* TZAssetModel.m in Sources */,
 				04230ED9228711E2001B8E98 /* SquareTableViewCell.m in Sources */,
+				DF19032F22A0D307003E71FA /* ApplyViewController.m in Sources */,
 				0492F5D82280774C0074AC20 /* HNUserModel.m in Sources */,
 				04230ECB2286DFF4001B8E98 /* MJProperty.m in Sources */,
 				04230EA72286D971001B8E98 /* HotDynamicController.m in Sources */,

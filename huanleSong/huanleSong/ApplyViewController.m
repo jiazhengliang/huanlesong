@@ -1,22 +1,23 @@
 //
-//  PersonViewController.m
+//  ApplyViewController.m
 //  huanleSong
 //
-//  Created by joneMac on 2019/5/13.
+//  Created by jones on 2019/5/31.
 //  Copyright © 2019 mac. All rights reserved.
 //
 
-#import "PersonViewController.h"
-#import "MineViewCell.h"
-#import "ModelViewController.h"
-@interface PersonViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "ApplyViewController.h"
+
+@interface ApplyViewController ()
+
+
 @property (strong, nonatomic) UITableView *tableView;
 @property(strong,nonatomic)NSArray *infoArray;
 @property(strong,nonatomic)NSArray *infoSubArray;
 
 @end
 
-@implementation PersonViewController
+@implementation ApplyViewController
 -(UITableView *)tableView
 {
     if (!_tableView) {
@@ -32,53 +33,93 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.barView setTitle:@"个人资料"];
+    [self.barView setTitle:@"发布旅游"];
     self.barView.backgroundColor= UIColor.whiteColor;
     self.barView.setTitleColor;
     
-    
     self.view.backgroundColor = BackGroundColor;
-    self.infoArray = @[@"昵称",@"身高",@"体重",@"语言",@"特长",@"爱好地"];
+    self.infoArray = @[@"主题",@"地点",@"时间",@"预计花费",@"人数",@"备注"];
+
+    UIImageView *iamge = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 151)];
+    iamge.image = [UIImage imageNamed:@"l_yh_img_home"];
+    self.tableView.tableHeaderView = iamge;
     
-
-
-
+    
     [self.view addSubview:self.tableView];
     [self.leftBtn setImage:[UIImage imageNamed:@"icon_return_red_normal"] forState:UIControlStateNormal];
     // Do any additional setup after loading the view.
     
     [self.barView setLeftButton:self.leftBtn];
     
+    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,screen_width, 80)];
+    
+    UIButton *buttonBack=[[UIButton alloc]initWithFrame:CGRectMake(20, 30,screen_width-40, 50)];
+    [buttonBack addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
+
+    buttonBack.backgroundColor = RGBColor(255, 53, 116);
+    [footView addSubview:buttonBack];
+    [buttonBack setTitle:@"发布" forState:UIControlStateNormal];
+    buttonBack.titleLabel.textColor  = UIColor.whiteColor;
+    buttonBack.layer.cornerRadius = 5;
+    
+    self.tableView.tableFooterView = footView;
     // Do any additional setup after loading the view.
 }
 
+-(void)submitClick
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *name =  [defaults objectForKey:@"apply_1"];
+    NSString *heigh =  [defaults objectForKey:@"apply_2"];
+    NSString *weight =  [defaults objectForKey:@"apply_3"];
+    NSString *langugue =  [defaults objectForKey:@"apply_4"];
+    NSString *likes =  [defaults objectForKey:@"apply_5"];
+    NSString *address =  [defaults objectForKey:@"apply_6"];
+    
+    if (name.length == 0||heigh.length == 0||weight.length == 0 ||langugue.length ==0||likes.length == 0||address.length == 0) {
+        
+        [DisplayUtils alert:@"请输入完相关信息"];
+       
+    } else
+    {
+        [SVProgressHUD show];
+         [self performSelector:@selector(delaySubmit) withObject:nil afterDelay:1.0];
+    }
+}
+-(void)delaySubmit{
+    
+    [SVProgressHUD dismiss];
+    [DisplayUtils alert:@"申请成功，等待系统审核"];
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated
 {
- 
+    
     [super viewWillAppear:animated];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    NSString *name =  [defaults objectForKey:@"user_1"];
-    NSString *heigh =  [defaults objectForKey:@"user_2"];
-    NSString *weight =  [defaults objectForKey:@"user_3"];
-    NSString *langugue =  [defaults objectForKey:@"user_4"];
-    NSString *likes =  [defaults objectForKey:@"user_5"];
-    NSString *address =  [defaults objectForKey:@"user_6"];
+    NSString *name =  [defaults objectForKey:@"apply_1"];
+    NSString *heigh =  [defaults objectForKey:@"apply_2"];
+    NSString *weight =  [defaults objectForKey:@"apply_3"];
+    NSString *langugue =  [defaults objectForKey:@"apply_4"];
+    NSString *likes =  [defaults objectForKey:@"apply_5"];
+    NSString *address =  [defaults objectForKey:@"apply_6"];
     
-    self.infoSubArray = @[name?name:@"小姐姐",
-                          heigh?heigh:@"168cm",
-                          weight?weight:@"50kg",
-                          langugue?langugue:@"英语",
-                          likes?likes:@"爬山",
-                          address?address:@"深圳"];
+    self.infoSubArray = @[name?name:@"",
+                          heigh?heigh:@"",
+                          weight?weight:@"",
+                          langugue?langugue:@"",
+                          likes?likes:@"",
+                          address?address:@""];
     
     [self.tableView reloadData];
 }
 
 -(void)leftBtnClick{
     
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark-------------UITableViewDelegate
@@ -140,35 +181,22 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    //    if (section==0) {
-    //        return 205*KWIDTH;
-    //    } else
-    //    {
+   
     return 15*KWIDTH;
-    //    }
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
+    NSString *string = [NSString stringWithFormat:@"apply_%d",indexPath.section + 1];
     
     NSString *textString = [self.infoArray objectAtIndex:indexPath.section];
-    NSString *string = [NSString stringWithFormat:@"user_%d",indexPath.section + 1];
     ModelViewController *model = [[ModelViewController alloc] init];
     model.titleString = string;
     model.textstring = [NSString stringWithFormat:@"请输入%@",textString];
-
+    model.type = @"发布";
     [self.navigationController pushViewController:model animated:YES];
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -17,10 +17,9 @@
 {
     if (!_accountText)
     {
-        _accountText = InsertTextFieldWithTextColor(nil,self, CGRectZero, @"请输入手机号", SystemFontSize(16), NSTextAlignmentLeft, UIControlContentVerticalAlignmentCenter, UIColor.grayColor);
+        _accountText = InsertTextFieldWithTextColor(nil,self, CGRectZero, self.textstring, SystemFontSize(16), NSTextAlignmentLeft, UIControlContentVerticalAlignmentCenter, UIColor.grayColor);
             _accountText.backgroundColor =UIColorFromRGBA(234, 234, 234, 1.0);
         [_accountText setValue:UIColorFromRGBA(190, 190, 190, 1.0) forKeyPath:@"_placeholderLabel.textColor"];
-        _accountText.keyboardType = UIKeyboardTypeNumberPad;
         _accountText.clearButtonMode = UITextFieldViewModeWhileEditing;
         _accountText.layer.cornerRadius = 5;
         _accountText.layer.masksToBounds = YES;
@@ -31,7 +30,14 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.accountText];
-    [self.barView setTitle:@"修改个人资料"];
+    
+    if ([self.type isEqualToString:@"发布"]) {
+         [self.barView setTitle:@"发布的内容"];
+    } else
+    {
+        [self.barView setTitle:@"修改个人资料"];
+    }
+  
     self.barView.backgroundColor= UIColor.whiteColor;
     self.barView.setTitleColor;
     UIButton *buttonBack=[[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
@@ -62,8 +68,15 @@
 -(void)rightBtnClick{
     if (self.accountText.text.length >0) {
         [SVProgressHUD show];
-        
-        [self performSelector:@selector(delaySubmit) withObject:nil afterDelay:1.0];
+        if ([self.type isEqualToString:@"发布"]) {
+           
+            [self delaySubmit];
+            
+        } else
+        {
+             [self performSelector:@selector(delaySubmit) withObject:nil afterDelay:1.0];
+        }
+     
     }else
     {
         [DisplayUtils alert:@"请输入修改的内容"];

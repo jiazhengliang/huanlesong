@@ -224,8 +224,8 @@
     [self.view addSubview:self.bgImgView];
     [self.view addSubview:self.logoImage];
     [self.view addSubview:self.accountText];
-    self.accountText.text = @"13788889999";
-    self.passwordText.text = @"8888";
+//    self.accountText.text = @"13788889999";
+//    self.passwordText.text = @"8888";
 
     [self.view addSubview:self.codeBtn];
     [self.view addSubview:self.passwordText];

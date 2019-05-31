@@ -12,6 +12,7 @@
 #import "feedbackController.h"
 #import "MyVideoController.h"
 #import "HotDynamicController.h"
+#import "ApplyViewController.h"
 //#import "promoteSelfController.h"
 //#import "WishDateListController.h"
 //
@@ -71,7 +72,7 @@
     [self updateUserData:nil];
     
     self.tableView.tableHeaderView = backGroud;
-    self.infoArray = @[@"个人资料",@"我的旅游",@"我的视频",@"问题与反馈"];
+    self.infoArray = @[@"个人资料",@"发布旅游申请",@"我的旅游",@"我的视频",@"问题与反馈"];
     self.infoImageArray = @[@"personal_icon_data",@"personal_icon_mywish",@"personal_icon_gift",@"personal_icon_honor",@"personal_icon_spread",@"personal_icon_setup"];
     [self.view addSubview:self.tableView];
     self.barView.hidden = YES;
@@ -186,11 +187,15 @@
     if (indexPath.row == 0) {
         [self.navigationController pushViewController:[PersonViewController new] animated:YES];
     } else if (indexPath.row == 1) {
-        MyVideoController *videoVc = [MyVideoController new];
-        videoVc.titleString = @"我的旅游";
+        ApplyViewController *videoVc = [ApplyViewController new];
         [self.navigationController pushViewController:videoVc animated:YES];
        
     } else if (indexPath.row == 2) {
+        MyVideoController *videoVc = [MyVideoController new];
+        videoVc.titleString = @"我的旅游";
+        [self.navigationController pushViewController:videoVc animated:YES];
+        
+    }  else if (indexPath.row == 3) {
         
         HotDynamicController *videoVc = [HotDynamicController new];
         videoVc.isfrom = YES;

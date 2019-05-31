@@ -14,6 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *titleString;
 
+@property (nonatomic, strong) NSString *type;
+
+@property (nonatomic, strong) NSString *textstring;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
