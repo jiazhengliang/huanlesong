@@ -35,9 +35,39 @@
 
 @property (nonatomic,strong) UILabel *timeLabel;
 
+@property (nonatomic,strong) UIButton *blackbtn;
+
+
+@property (nonatomic,strong) UIButton *jibaoBtn;
+
+
 @end
 
 @implementation SquareTableViewCell
+
+-(UIButton *)blackbtn
+{
+    if (_blackbtn == nil) {
+        _blackbtn = [[UIButton alloc] init];
+        [_blackbtn setTitle:@"拉黑" forState:UIControlStateNormal];
+        [_blackbtn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+        _blackbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        
+    }
+    return _blackbtn;
+}
+
+-(UIButton *)jibaoBtn
+{
+    if (_jibaoBtn == nil) {
+        _jibaoBtn = [[UIButton alloc] init];
+        [_jibaoBtn setTitle:@"举报" forState:UIControlStateNormal];
+        [_jibaoBtn setTitleColor:UIColor.grayColor forState:UIControlStateNormal];
+        _jibaoBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        
+    }
+    return _jibaoBtn;
+}
 
 -(FreshHeaderView *)homeView
 {
@@ -72,6 +102,13 @@
 //        [self.contentView addSubview:self.btmView];
         [self.contentView addSubview:self.addressLabel];
         [self.contentView addSubview:self.timeLabel];
+        
+        [self.contentView addSubview:self.blackbtn];
+        [self.contentView addSubview:self.jibaoBtn];
+        
+        [self.blackbtn addTarget:self action:@selector(blockBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.jibaoBtn addTarget:self action:@selector(jibaoBtnClick) forControlEvents:UIControlEventTouchUpInside];
+
 //        self.homeView.dateDelegate = self;
 //        self.homeView.cell = self;
         self.smallArray = [NSMutableArray array];
@@ -109,6 +146,21 @@
     
 }
 
+-(void)blockBtnClick
+{
+    NSLog(@"拉黑");
+    if ([self.delegate respondsToSelector:@selector(clickMoreInfoInCell:type:)]){
+        [self.delegate clickMoreInfoInCell:self type:@"拉黑"];
+    }
+}
+
+-(void)jibaoBtnClick
+{
+    NSLog(@"举报");
+    if ([self.delegate respondsToSelector:@selector(clickMoreInfoInCell:type:)]){
+        [self.delegate clickMoreInfoInCell:self type:@"举报"];
+    }
+}
 
 #pragma mark 头像 更多
 -(void)didHomeHeaderViewClickIcon:(NSString *)loginName Cell:(UITableViewCell *)cell
@@ -135,6 +187,7 @@
     
 }
 
+
 //视频点击
 -(void)SingleTapVideo:(UITapGestureRecognizer*)recognizer{
     
@@ -142,205 +195,14 @@
         [self.delegate clickMoreInfoInCell:self type:@"视频"];
     }
 }
+
 -(void)setPublishModel:(PublishModel *)publishModel{
     _publishModel = publishModel;
 }
-//-(void)setRefrashModel:(NewRefreshModel *)refrashModel{
-//
-//
-//    _refrashModel = refrashModel;
-//
-//    for (UIView *subView in self.contentView.subviews) {
-//        NSLog(@"%@",subView);
-//
-//        if ([subView isKindOfClass:[UIImageView class]]) {
-//            NSLog(@"removeFromSuperview ==%d",subView.tag);
-//            [subView removeFromSuperview];
-//        }
-//    }
-//
-//    for (UIView *subView in self.homeView.ageHeight.subviews) {
-//        NSLog(@"%@",subView);
-//        if (subView.tag == 100) {
-//            [subView removeFromSuperview];
-//        }
-//    }
-//    if ([refrashModel.MemberID isEqualToString:[LSingleton shareClient].loginUser.MemberID]) {
-//        [self.btmView.moreBtn setImage:[UIImage imageNamed:@"icon_novelty_trash"] forState:UIControlStateNormal];;
-//    } else
-//    {
-//        [self.btmView.moreBtn setImage:[UIImage imageNamed:@"home_icon_more"] forState:UIControlStateNormal];;
-//
-//
-//    }
-//
-//    NSString *pathIcon = [CommonTools URLConverToURL:refrashModel.HeadImaSmall];
-//
-//    [self.homeView.iconImagView sd_setImageWithURL:[NSURL URLWithString:pathIcon] placeholderImage:[UIImage imageNamed:@"dynamic_default_avatar"]];
-//
-//    self.homeView.nickName.text = refrashModel.Nickname;
-//
-//    if (refrashModel.Sex ==1) {
-//        self.homeView.sexView.image = [UIImage imageNamed:@"home_icon_man"];
-//    } else
-//    {
-//        self.homeView.sexView.image = [UIImage imageNamed:@"home_icon_woman"];
-//    }
-//
-//    self.homeView.ageLabel.text = refrashModel.Age;
-//
-//    self.btmView.pariseBtn.selected = refrashModel.IsUpvote?YES:NO;
-//
-//    [self.homeView fillWithPublishModel:self.publishModel type:@"首页"];
-//
-//
-//    NSString *timeString = [CommonTools swichStringtoData:refrashModel.FreshCreateTime];
-//
-//    CGFloat longer = (CGFloat)refrashModel.Distance/1000;
-//
-//    CGSize disSize = [timeString sizeWithAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12 * KWIDTH]}];
-//
-//    self.homeView.dateLabel.text = timeString;
-//    NSString *dis = [NSString stringWithFormat:@"%0.2fkm",longer];
-//
-//    if(refrashModel.Sex ==2){
-//        //self.homeView.ageHeight.text = refrashModel.City_Often?refrashModel.City_Often:@"";
-//        if(refrashModel.City_Often.length>0){
-//            NSArray *cityArr = [refrashModel.City_Often componentsSeparatedByString:@","];
-//            NSInteger count = cityArr.count;
-//            CGFloat distance = 0.0;
-//            if(count>3){
-//                count = 3;
-//            }
-//            for (NSInteger i = 0; i < count; i++) {
-//                NSString *cityDetail = cityArr[i];
-//
-//                NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:12 * KWIDTH]};
-//                CGSize citySize = sizeWithText(cityDetail, attribute, CGSizeMake(180, 0));
-//
-//                UILabel *cityLabel = [[UILabel alloc]initWithFrame:CGRectMake(distance, 0, citySize.width + 10, 20)];
-//                cityLabel.text = cityDetail;
-//                cityLabel.textAlignment = NSTextAlignmentCenter;
-//                cityLabel.tag = 100;
-//                cityLabel.font = [UIFont systemFontOfSize:12 * KWIDTH];
-//                cityLabel.layer.cornerRadius = 6.0;
-//                cityLabel.layer.borderWidth = 1.0;
-//                cityLabel.layer.borderColor = RGBColor(255, 138, 95).CGColor;
-//                cityLabel.backgroundColor = RGBColor(255, 243, 238);
-//                cityLabel.textColor = RGBColor(245, 138, 95);
-//                cityLabel.layer.masksToBounds = YES;
-//                [self.homeView.ageHeight addSubview:cityLabel];
-//                distance += citySize.width;
-//                distance += 24;
-//            }
-//            self.homeView.ageHeight.text = @"";
-//        }else{
-//            self.homeView.ageHeight.text = @"";
-//        }
-//    }else{ //男性则显示发布的位置商圈（没有则不显示）、职业
-//        NSString *businessArea = refrashModel.FreshBusiness?refrashModel.FreshBusiness:@"";
-//        if(businessArea.length>0){
-//            self.homeView.ageHeight.text = [NSString stringWithFormat:@"%@ | %@",refrashModel.FreshBusiness,refrashModel.Profession?refrashModel.Profession:@"保密"];
-//        }else{
-//            self.homeView.ageHeight.text = refrashModel.Profession?refrashModel.Profession:@"保密";
-//        }
-//    }
-//
-//
-//    NSString *area = [NSString stringWithFormat:@"  %@",refrashModel.FreshCity?refrashModel.FreshCity:@"本地"];
-//
-//    [self.homeView.localBtn setTitle:area forState: UIControlStateNormal];
-//
-//    NSDictionary *attribute = @{NSFontAttributeName:[UIFont fontWithName:@"PingFang-SC-Medium" size:16 * KWIDTH]};
-//    //    CGsize
-//    CGSize fontSize = sizeWithText(refrashModel.FreshTitle, attribute, CGSizeMake(screen_width -30*KWIDTH, 0));
-//
-//    self.detailLabel.text = refrashModel.FreshTitle;
-//    self.detailLabel.frame = CGRectMake(15 * KWIDTH, (95-7.5) * KWIDTH, screen_width -30*KWIDTH, fontSize.height);
-//
-//    NSArray *imageAarray = refrashModel.FreshImages;
-//
-//    NSInteger count = imageAarray.count;
-//    CGFloat  height;
-//    [self.smallArray removeAllObjects];
-//
-//
-//    if(count==0){
-//        self.detailImageV.frame = CGRectMake( 12, self.detailLabel.bottom + MARGIN, screen_width - 24, 0);
-//        self.btmView.y = self.detailImageV.bottom + 3;
-//    }else if (count==1){
-//        PublishFreshImage *imgaModel = [imageAarray objectAtIndexWithCheck:0];
-////        NSString *strUrl = [imgaModel.PhotoPathSmall stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
-////        NSString *downloadUrl = AFAppDotNetAPIBaseURLString(strUrl);
-//
-//        NSString *downloadUrl = [CommonTools URLConverToURL:imgaModel.PhotoPathSmall];
-//
-//
-//
-//        UIImageView *picV = [[UIImageView alloc]init];
-//        picV.tag = 0;
-//        self.smallImage = picV;
-//        [picV sd_setImageWithURL:[NSURL URLWithString:downloadUrl] placeholderImage:[UIImage imageNamed:@""]];
-//
-//        if (imgaModel.PhotoWidth == nil) {
-//            height = (screen_width-30*KWIDTH)/2;
-//        } else {
-//            height = (screen_width-30*KWIDTH)*([imgaModel.PhotoHeight floatValue]/[imgaModel.PhotoWidth floatValue]/2);
-//        }
-//
-//
-//        if (height >0 ) {
-//            picV.frame = CGRectMake( 12, self.detailLabel.bottom + 10*KWIDTH, (screen_width - 24)/2, height);
-//        } else{
-//            picV.frame = CGRectMake( 12, self.detailLabel.bottom + 10*KWIDTH, (screen_width - 24)/2, 0);
-//        }
-//
-//        [self.contentView addSubview:picV];
-//
-//        UITapGestureRecognizer* singleRecognizer;
-//        singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
-//        //点击的次数
-//        singleRecognizer.numberOfTapsRequired = 1; // 单击
-//        picV.userInteractionEnabled = YES;
-//        [picV addGestureRecognizer:singleRecognizer];
-//        [self.smallArray addObject:picV];
-//
-//        self.btmView.y = picV.bottom + 3;
-//    }else{
-//        NSInteger line = count / 3;
-//        if(count % 3 > 0) line++;
-//        CGFloat imageWh = (screen_width - 60) / 3;
-//        for (NSInteger i = 0; i < count; i++) {
-//            PublishFreshImage *imgaModel = [imageAarray objectAtIndexWithCheck:i];
-//            NSString *downloadUrl = [CommonTools URLConverToURL:imgaModel.PhotoPathSmall];
-//
-//            UIImageView *picV = [[UIImageView alloc]init];
-//            picV.contentMode = UIViewContentModeScaleAspectFill;
-//            picV.clipsToBounds = YES;
-//            [picV sd_setImageWithURL:[NSURL URLWithString:downloadUrl] placeholderImage:[UIImage imageNamed:@""]];
-//            picV.frame = CGRectMake(12 + i % 3 * (12 + imageWh),self.detailLabel.bottom + 10*KWIDTH + i / 3 * (12 + imageWh), imageWh, imageWh);
-//            picV.tag = i;
-//
-//            [self.smallArray addObject:picV];
-//            UITapGestureRecognizer* singleRecognizer;
-//            singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
-//            //点击的次数
-//            singleRecognizer.numberOfTapsRequired = 1; // 单击
-//            picV.userInteractionEnabled = YES;
-//            [picV addGestureRecognizer:singleRecognizer];
-//
-//            [self.contentView addSubview:picV];
-//        }
-//        self.btmView.y = self.detailLabel.bottom + 10*KWIDTH + line * (12 + imageWh);
-//    }
-//
-//    //    self.headView.squareModel = refrashModel;
-//
-//    self.cellHeight = self.btmView.bottom;
-//
-//    self.frame = CGRectMake(0, 0, screen_width, self.cellHeight);
-//}
+
+
 #pragma mark - getters and setters
+
 -(void)setRefrashModel:(NewRefreshModel *)refrashModel{
     
     
@@ -352,13 +214,10 @@
             [subView removeFromSuperview];
         }
     }
-   
     
     [self.homeView.moreBtn setImage:[UIImage imageNamed:@"icon_novelty_report"] forState:UIControlStateNormal];;
     
     NSString *pathIcon = refrashModel.HeadImaBig;
-
-//    [CommonTools URLConverToURL:refrashModel.HeadImaSmall];
     
     [self.homeView.iconImagView sd_setImageWithURL:[NSURL URLWithString:pathIcon] placeholderImage:[UIImage imageNamed:@"5gshidi"]];
     if (refrashModel.IsAuth_Anchor == 1) {
@@ -494,8 +353,14 @@
     }
 
     self.addressLabel.frame = CGRectMake(self.detailLabel.left,imageBottom, 150, 12*KWIDTH);
-    self.timeLabel.frame = CGRectMake(screen_width-150, self.addressLabel.top, 140,12 *KWIDTH);
+    self.timeLabel.frame = CGRectMake(10, self.addressLabel.top, 100,12 *KWIDTH);
+    
+    self.blackbtn.frame = CGRectMake(screen_width-210, self.timeLabel.top-10 *KWIDTH, 100,32 *KWIDTH);
+    
+    self.jibaoBtn.frame = CGRectMake(screen_width-110, self.timeLabel.top-10 *KWIDTH, 100,32 *KWIDTH);
+
     NSString *address;
+    int rand  = arc4random() % 100000;
     if (refrashModel.FreshCity.length >0&&refrashModel.Business.length>0) {
         address =  [NSString stringWithFormat:@"%@.%@" ,refrashModel.FreshCity,refrashModel.Business];
     } else if(refrashModel.FreshCity.length == 0){
@@ -508,7 +373,7 @@
     //
     NSString *timeString;
 //    = [CommonTools swichStringtoData:refrashModel.FreshCreateTime];
-    CGFloat longer = (CGFloat)refrashModel.Distance/1000;
+    CGFloat longer = (CGFloat)rand/1000;
 
     NSString *dis = [NSString stringWithFormat:@"%0.2fkm",longer];
 
@@ -521,26 +386,12 @@
         timeString =  [NSString stringWithFormat:@"%@" ,timeString?timeString:@""];
     }
     self.timeLabel.text = timeString;
-   self.cellHeight =self.addressLabel.bottom + 5*KWIDTH ;
+   self.cellHeight =self.blackbtn.bottom + 15*KWIDTH ;
     
     self.frame = CGRectMake(0, 0, screen_width, self.cellHeight);
 
 }
 
-//-(SquareUserInfoHeaderView *)headView{
-//    if(_headView==nil){
-//        _headView = [[SquareUserInfoHeaderView alloc]initWithFrame:CGRectMake(0, 0, screen_width, 85 * KWIDTH) headType:SQUARE];
-//    }
-//    return _headView;
-//}
-
-//-(SquareBtmInfoView *)btmView{
-//    if (_btmView==nil) {
-//        _btmView = [[SquareBtmInfoView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 40 * KWIDTH) withType:@"愿望"];
-//        _btmView.delegate = self;
-//    }
-//    return _btmView;
-//}
 
 -(UILabel *)detailLabel{
     if(_detailLabel==nil){

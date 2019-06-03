@@ -84,7 +84,7 @@
     
     
     UILabel *nickLab = [[UILabel alloc] init];
-    nickLab.text = @"小姐姐";
+    nickLab.text = @"贾宝亮";
     nickLab.font = [UIFont systemFontOfSize:14];
     nickLab.textColor = UIColor.whiteColor;
     [backGroud addSubview:nickLab];

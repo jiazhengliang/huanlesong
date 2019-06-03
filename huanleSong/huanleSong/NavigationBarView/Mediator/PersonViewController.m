@@ -66,9 +66,9 @@
     NSString *likes =  [defaults objectForKey:@"user_5"];
     NSString *address =  [defaults objectForKey:@"user_6"];
     
-    self.infoSubArray = @[name?name:@"小姐姐",
-                          heigh?heigh:@"168cm",
-                          weight?weight:@"50kg",
+    self.infoSubArray = @[name?name:@"贾宝亮",
+                          heigh?heigh:@"178cm",
+                          weight?weight:@"60kg",
                           langugue?langugue:@"英语",
                           likes?likes:@"爬山",
                           address?address:@"深圳"];

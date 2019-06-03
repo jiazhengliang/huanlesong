@@ -17,9 +17,8 @@
 //#import "SquareDetailCommentTableViewCell.h"
 //#import "FreshChoiceRewardView.h"
 //#import "PublicView.h"
-//#import "CommonProtocol.h"
 
-@interface HotDynamicController ()<UITableViewDelegate,UITableViewDataSource>
+@interface HotDynamicController ()<UITableViewDelegate,UITableViewDataSource,SquareTableViewCellDelegate,UIAlertViewDelegate>
 @property (strong,nonatomic) UITableView *dateTableView;
 @property (nonatomic,strong) NSMutableArray *infoArr;
 @property (nonatomic, assign) NSInteger pageInde;
@@ -29,9 +28,11 @@
 
 @property (nonatomic,strong) NSIndexPath *priseIndex;
 
+@property (nonatomic,strong)NSIndexPath *index;
+
 @property (nonatomic,strong) UIView *choiceRewardBgView;
 
-@property (nonatomic,strong)NSArray *imagearray;
+@property (nonatomic,strong)NSMutableArray *imagearray;
 
 @end
 
@@ -49,22 +50,22 @@
         [self.leftBtn setImage:[UIImage imageNamed:@"icon_return_red_normal"] forState:UIControlStateNormal];
         
         [self.barView setLeftButton:self.leftBtn];
-        self.imagearray =@[@{
-                      @"HeadImaBig": @"http://jxtt.diangoumall.com/149c30b0vodcq1258058953/7e8d2b855285890789595419918/5285890789595419919.jpg",
+        self.imagearray =[NSMutableArray arrayWithArray:@[@{
+                      @"HeadImaBig": @"http://jxtt.diangoumall.com/149c30b0vodcq1258058953/da085b335285890789742023960/5285890789742023961.jpg",
                       @"Nickname": @"龙源",
                       @"City_Often": @"广东",
-                      @"FreshTitle": @"姑娘，你那不是穷游，是穷浪！",
+                      @"FreshTitle": @"大哥，你那不是穷游，是穷浪！",
                       @"CreateTime": @"2018-12-13",
-                      @"play_url": @"http://jxtt.diangoumall.com/149c30b0vodcq1258058953/7e8d2b855285890789595419918/sPwwfvJgV4QA.mp4"
-                      }];
+                      @"play_url": @"http://jxtt.diangoumall.com/149c30b0vodcq1258058953/da085b335285890789742023960/nW1dC10TVT4A.mp4"
+                      }]];
     } else
     {
         self.title = @"首页";
-       self.imagearray =@[@{
+       self.imagearray = [NSMutableArray arrayWithArray: @[@{
                                    @"HeadImaBig": @"http://1400100725.vod2.myqcloud.com/8b7d5993vodgzp1400100725/80a3caac5285890787211309561/5285890787211309562.jpg",
                                    @"Nickname": @"龙源",
                                    @"City_Often": @"广东",
-                                   @"FreshTitle": @"姑娘，你那不是穷游，是穷浪！",
+                                   @"FreshTitle": @"少年，你那不是穷游，是穷浪！",
                                    @"CreateTime": @"2018-12-13",
                                    
                                    @"play_url": @"http://1400100725.vod2.myqcloud.com/8b7d5993vodgzp1400100725/80a3caac5285890787211309561/86Dc0IGoPkEA.mp4"
@@ -73,7 +74,7 @@
                                    @"HeadImaBig": @"http://1400100725.vod2.myqcloud.com/8b7d5993vodgzp1400100725/80fc8ea65285890787211356130/5285890787211356131.jpg",
                                    @"Nickname": @"董Season ",
                                    @"City_Often": @"广东",
-                                   @"FreshTitle": @"跟你的恋爱啊，好像是去一个遥远的异国旅行，沿路都很开心，就算心里知道绝对没有机会在那里定居",
+                                   @"FreshTitle": @"跟你的爱好，好想是去一个遥远的异国旅行，沿路都很开心，就算心里知道绝对没有机会在那里定居",
                                    @"CreateTime": @"2018-12-13",
                                    
                                    @"play_url": @"http://1400100725.vod2.myqcloud.com/8b7d5993vodgzp1400100725/80fc8ea65285890787211356130/3i3sMzeQqzgA.mp4",
@@ -143,7 +144,7 @@
                                    @"FreshTitle": @"带上心灵去旅行，以平和的心态看待一切，文画音，看似耳目所为，其实是内心世界的感受。可以以心感悟，以此沉淀，足矣；耳听佳音，目极美好，已是福音；携一勺花之语，摘一曲花之歌，让心释然，已是欣慰",
                                    @"CreateTime": @"2018-12-13",
                                    @"play_url":  @"http://1400100725.vod2.myqcloud.com/8b7d5993vodgzp1400100725/70a68e145285890787207961722/Bo3dBjr62p8A.mp4",
-                                   }];
+                                   }]];
         
     }
    
@@ -205,7 +206,7 @@
 
 #pragma mark---UITableView Delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-   return self.imagearray.count;
+   return self.infoArr.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -276,6 +277,90 @@
     return _vipInfoModelArr;
 }
 
+
+
+-(void)clickMoreInfoInCell:(UITableViewCell *)cell type:(NSString *)type
+{
+    NSLog(@"type == %@",type);
+    if ([type isEqualToString:@"举报"]) {
+        [self didAlertReport];
+    }else
+    {
+        NSIndexPath *index = [self.dateTableView indexPathForCell:cell];
+        
+        self.index = index;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"拉黑" message:@"确定要拉黑" delegate:self cancelButtonTitle:@"好的" otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"buttonIndex = %d",buttonIndex);
+    
+    if (buttonIndex == 1) {
+        [self.infoArr removeObjectAtIndex:self.index.section];
+        [self.dateTableView reloadData];
+        
+    }
+
+
+}
+
+#pragma mark - 举报
+
+- (void)didAlertReport {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"举报" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"低俗色情" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD show];
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"标题夸张" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD show];
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"封面令人反感" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD show];
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"内容质量差" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [SVProgressHUD show];
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"广告软文" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"其他问题" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"侵权 (抄袭、侵犯名誉等)" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self performSelector:@selector(delayTypemiss) withObject:nil afterDelay:1];
+
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+-(void)delayTypemiss{
+    
+    [SVProgressHUD dismiss];
+    [DisplayUtils alert:@"举报成功"];
+    
+}
 @end
 
 
